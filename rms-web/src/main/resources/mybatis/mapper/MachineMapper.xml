@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spdb.mapper.MachineMapper">
+
+    <select id="getAllMachines" resultType="com.spdb.pojo.Machine">
+        select machine_id as machineId, ip, name, register_date as registerDate, sid, user_id as userId, env
+        from rms_db.machine;
+    </select>
+
+</mapper>
