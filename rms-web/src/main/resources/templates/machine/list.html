@@ -65,8 +65,9 @@
 									<th>注册时间</th>
 									<th>机器SID</th>
 									<th>机器配置</th>
-									<th>使用情况</th>
 									<th>环境</th>
+									<th>使用情况</th>
+									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -77,6 +78,7 @@
 									<td th:text="${machine.getRegisterDate()}"></td>
 									<td th:text="${machine.getSid()}"></td>
 									<td th:text="${machine.getConfig()}"></td>
+									<td th:text="${machine.getEnv()}"></td>
 									<td th:text="${machine.getUseInfo()}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(id=${machine.getMachineId()})}">编辑</a>

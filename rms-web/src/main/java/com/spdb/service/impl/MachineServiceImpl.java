@@ -31,7 +31,7 @@ public class MachineServiceImpl implements MachineService {
             MachineVo machineVo = new MachineVo();
             // 转换注册时间
             Long registerDate = machine.getRegisterDate();
-            String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(registerDate * 1000));
+            String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(registerDate));
             machineVo.setRegisterDate(date);
             // 转换使用情况
             Long userId = machine.getUserId();
@@ -62,5 +62,15 @@ public class MachineServiceImpl implements MachineService {
         machine.setUserId(0L);
         // 添加
         machineMapper.addMachine(machine);
+    }
+
+    @Override
+    public Machine getMachineById(Long id) {
+        return machineMapper.getMachineById(id);
+    }
+
+    @Override
+    public void updateMachine(Machine machine) {
+        machineMapper.updateMachine(machine);
     }
 }

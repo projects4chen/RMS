@@ -18,4 +18,17 @@ public interface MachineService {
      * @param machine
      */
     void addMachine(Machine machine);
+
+    /**
+     * 根据id查机器的信息
+     * @param id
+     * @return
+     */
+    Machine getMachineById(Long id);
+
+    /**
+     * 更新机器信息
+     * @param machine
+     */
+    void updateMachine(Machine machine);
 }

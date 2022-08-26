@@ -1,4 +1,4 @@
-CREATE DATABASE rms_db;
+# CREATE DATABASE rms_db;
 
 USE rms_db;
 

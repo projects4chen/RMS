@@ -12,4 +12,10 @@ public interface MachineMapper {
 
     // 添加一个机器
     void addMachine(Machine machine);
+
+    // 根据id查机器
+    Machine getMachineById(Long id);
+
+    // 根据id更新机器信息
+    void updateMachine(Machine machine);
 }
