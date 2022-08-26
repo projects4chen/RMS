@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spdb.mapper.UserMapper">
+
+    <select id="getUserNameById" resultType="String">
+        SELECT name
+        FROM rms_db.user
+        WHERE user_id = #{userId};
+    </select>
+
+</mapper>

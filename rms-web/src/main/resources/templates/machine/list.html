@@ -75,7 +75,7 @@
 									<td th:text="${machine.getName()}"></td>
 									<td th:text="${machine.getRegisterDate()}"></td>
 									<td th:text="${machine.getSid()}"></td>
-									<td th:text="${machine.getUserId()}"></td>
+									<td th:text="${machine.getUseInfo()}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(id=${machine.getMachineId()})}">编辑</a>
 										<a class="btn btn-sm btn-danger" th:href="@{/user/removeEmployee(id=${machine.getMachineId()})}">删除</a>
