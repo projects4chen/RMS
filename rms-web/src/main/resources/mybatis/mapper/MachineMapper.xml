@@ -5,8 +5,12 @@
 <mapper namespace="com.spdb.mapper.MachineMapper">
 
     <select id="getAllMachines" resultType="com.spdb.pojo.Machine">
-        select machine_id as machineId, ip, name, register_date as registerDate, sid, user_id as userId, env
-        from rms_db.machine;
+        SELECT machine_id as machineId, ip, name, register_date as registerDate, sid, config, user_id as userId, env
+        FROM rms_db.machine;
     </select>
 
+    <insert id="addMachine" parameterType="com.spdb.pojo.Machine">
+        INSERT INTO rms_db.machine (machine_id, ip, name, sid, config, register_date, user_id, env)
+        VALUE (#{machineId}, #{ip}, #{name}, #{sid}, #{config}, #{registerDate}, #{userId}, #{env});
+    </insert>
 </mapper>

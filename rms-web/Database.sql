@@ -13,7 +13,7 @@ CREATE TABLE `user` (
                         `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
                         `identity` int(0) NOT NULL DEFAULT 0 COMMENT '身份',
                         PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
@@ -33,7 +33,7 @@ CREATE TABLE `message` (
                            `read` int(1) NULL DEFAULT NULL COMMENT '是否已读',
                            `msg_body` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '消息内容',
                            PRIMARY KEY (`msg_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of message
@@ -56,7 +56,7 @@ CREATE TABLE `application` (
                                `app_body` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '申请内容',
                                `rep_body` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '审批内容',
                                PRIMARY KEY (`app_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of application
@@ -74,7 +74,7 @@ CREATE TABLE `log` (
                        `operator_id` bigint(0) NOT NULL COMMENT '操作人id',
                        `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '操作内容',
                        PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log
@@ -93,17 +93,18 @@ CREATE TABLE `machine` (
                            `ip` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ip地址',
                            `name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '机器名字',
                            `sid` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '机器sid',
+                           `config` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '机器配置',
                            `register_date` bigint(0) NOT NULL COMMENT '注册时间',
                            `user_id` bigint(0) NOT NULL COMMENT '使用者id',
                            `env` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '环境',
                            PRIMARY KEY (`machine_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of machine
 -- ----------------------------
-INSERT INTO `machine` VALUES (1, '10.0.0.1', 'mc_1', 'mc_1', 0, 0,'env1');
-INSERT INTO `machine` VALUES (2, '10.0.0.2', 'mc_2', 'mc_2', 0, 1,'env1');
+INSERT INTO `machine` VALUES (1, '10.0.0.1', 'mc_1', 'mc_1', 'null', 0, 0,'env1');
+INSERT INTO `machine` VALUES (2, '10.0.0.2', 'mc_2', 'mc_2', 'null', 0, 1,'env1');
 
 -- ----------------------------
 -- Table structure for account
@@ -116,7 +117,7 @@ CREATE TABLE `account` (
                            `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
                            `owner_id` bigint(0) NOT NULL COMMENT '拥有者id',
                            PRIMARY KEY (`acc_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of account
@@ -136,7 +137,7 @@ CREATE TABLE `share` (
                          `sh_date` bigint(0) NOT NULL COMMENT '分享时间',
                          `duration` bigint(0) NOT NULL COMMENT '持续时间',
                          PRIMARY KEY (`sh_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404448588146192387 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of share

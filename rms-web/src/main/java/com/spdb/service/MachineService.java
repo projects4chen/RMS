@@ -12,4 +12,10 @@ public interface MachineService {
      * @return
      */
     List<MachineVo> getAllMachines();
+
+    /**
+     * 添加机器信息
+     * @param machine
+     */
+    void addMachine(Machine machine);
 }

@@ -9,4 +9,7 @@ import java.util.List;
 public interface MachineMapper {
     // 查询所有的机器
     List<Machine> getAllMachines();
+
+    // 添加一个机器
+    void addMachine(Machine machine);
 }

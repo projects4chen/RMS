@@ -15,6 +15,8 @@ public class Machine {
 
     private String sid;
 
+    private String config;
+
     private Long userId;
 
     private String env;

@@ -26,8 +26,14 @@ public class MachineController {
         return "/machine/list";
     }
 
-    @PostMapping("/toAddPage")
-    public String addMachine(){
+    @GetMapping("/toAddPage")
+    public String toAddPage(){
         return "/machine/add";
+    }
+
+    @RequestMapping("/addMachine")
+    public String addMachine(Machine machine){
+        machineService.addMachine(machine);
+        return "redirect:/user/machineInfo";
     }
 }

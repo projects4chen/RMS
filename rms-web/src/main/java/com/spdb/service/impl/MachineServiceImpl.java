@@ -46,10 +46,21 @@ public class MachineServiceImpl implements MachineService {
             machineVo.setIp(machine.getIp());
             machineVo.setName(machine.getName());
             machineVo.setSid(machine.getSid());
+            machineVo.setConfig(machine.getConfig());
             machineVo.setEnv(machine.getEnv());
             // 放入容器
             machineVos.add(machineVo);
         }
         return machineVos;
+    }
+
+    @Override
+    public void addMachine(Machine machine) {
+        // 添加注册时间
+        machine.setRegisterDate(new Date().getTime());
+        // 设置用户id为0
+        machine.setUserId(0L);
+        // 添加
+        machineMapper.addMachine(machine);
     }
 }

@@ -52,7 +52,7 @@
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<h2><a class="btn btn-sm btn-success" href="/user/toAddPage">添加机器</a></h2>
-					<h2><a class="btn btn-sm btn-danger" href="/user/toAddPage">删除</a></h2>
+<!--					<h2><a class="btn btn-sm btn-danger" href="/user/toAddPage">删除</a></h2>-->
 
 
 					<div class="table-responsive">
@@ -64,6 +64,7 @@
 									<th>机器名字</th>
 									<th>注册时间</th>
 									<th>机器SID</th>
+									<th>机器配置</th>
 									<th>使用情况</th>
 									<th>环境</th>
 								</tr>
@@ -75,6 +76,7 @@
 									<td th:text="${machine.getName()}"></td>
 									<td th:text="${machine.getRegisterDate()}"></td>
 									<td th:text="${machine.getSid()}"></td>
+									<td th:text="${machine.getConfig()}"></td>
 									<td th:text="${machine.getUseInfo()}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(id=${machine.getMachineId()})}">编辑</a>

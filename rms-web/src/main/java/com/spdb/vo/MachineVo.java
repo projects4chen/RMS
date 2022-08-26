@@ -14,6 +14,8 @@ public class MachineVo {
 
     private String sid;
 
+    private String config;
+
     private String useInfo;
 
     private String env;
