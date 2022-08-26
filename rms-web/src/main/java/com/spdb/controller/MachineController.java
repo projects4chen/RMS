@@ -25,7 +25,7 @@ public class MachineController {
         return "/machine/list";
     }
 
-    @RequestMapping("/toAddPage")
+    @RequestMapping("/toAddMachinePage")
     public String toAddPage(){
         return "/machine/add";
     }
@@ -36,7 +36,7 @@ public class MachineController {
         return "redirect:/user/machineInfo";
     }
 
-    @RequestMapping("/toUpdatePage")
+    @RequestMapping("/toUpdateMachinePage")
     public String toUpdatePage(Model model, @RequestParam("id") Long id){
         // 查出该机器的信息
         Machine machine = machineService.getMachineById(id);
