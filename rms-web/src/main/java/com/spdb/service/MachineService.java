@@ -31,4 +31,10 @@ public interface MachineService {
      * @param machine
      */
     void updateMachine(Machine machine);
+
+    /**
+     * 根据id删除机器
+     * @param id
+     */
+    void deleteMachine(Long id);
 }

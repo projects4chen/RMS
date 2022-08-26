@@ -54,4 +54,10 @@ public class MachineController {
         machineService.updateMachine(machine);
         return "redirect:/user/machineInfo";
     }
+
+    @RequestMapping("/deleteMachine")
+    public String deleteMachine(Long id){
+        machineService.deleteMachine(id);
+        return "redirect:/user/machineInfo";
+    }
 }

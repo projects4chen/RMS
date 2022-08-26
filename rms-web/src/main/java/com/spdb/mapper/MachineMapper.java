@@ -18,4 +18,7 @@ public interface MachineMapper {
 
     // 根据id更新机器信息
     void updateMachine(Machine machine);
+
+    // 根据id删除机器
+    void deleteMachine(Long id);
 }

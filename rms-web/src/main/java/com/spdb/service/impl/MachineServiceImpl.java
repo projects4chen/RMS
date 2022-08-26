@@ -73,4 +73,9 @@ public class MachineServiceImpl implements MachineService {
     public void updateMachine(Machine machine) {
         machineMapper.updateMachine(machine);
     }
+
+    @Override
+    public void deleteMachine(Long id) {
+        machineMapper.deleteMachine(id);
+    }
 }

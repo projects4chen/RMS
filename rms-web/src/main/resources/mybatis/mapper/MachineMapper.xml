@@ -31,4 +31,10 @@
         SET ip=#{ip}, name=#{name}, sid=#{sid}, config=#{config}, env=#{env}
         WHERE machine_id=#{machineId}
     </update>
+
+    <delete id="deleteMachine" parameterType="Long">
+        DELETE
+        FROM rms_db.machine
+        WHERE machine_id=#{id}
+    </delete>
 </mapper>
