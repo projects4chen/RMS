@@ -60,7 +60,7 @@
 						<table class="table table-striped table-sm" id="machineTable">
 							<thead>
 								<tr>
-									<th><input type="checkbox"></th>
+									<th><input type="checkbox" id="mainCheckBox" onclick="selectAll()"></th>
 									<th>id</th>
 									<th>ip地址</th>
 									<th>机器名字</th>
@@ -167,6 +167,15 @@
 						// alert("提交失败"+JSON.stringify(message));
 					}
 				});
+			}
+			function selectAll(){
+				let mainCheckBox = document.getElementById("mainCheckBox");
+				let flag = mainCheckBox.checked;
+				let classList = document.getElementsByClassName("mcid");
+				for (let i = 0; i < classList.length; i++){
+					classList[i].checked = !!flag;
+				}
+
 			}
 		</script>
 	</body>
