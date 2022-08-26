@@ -6,11 +6,9 @@ import com.spdb.vo.MachineVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -58,6 +56,12 @@ public class MachineController {
     @RequestMapping("/deleteMachine")
     public String deleteMachine(Long id){
         machineService.deleteMachine(id);
+        return "redirect:/user/machineInfo";
+    }
+
+    @RequestMapping("/deleteBatch")
+    public String deleteBatch(@RequestBody Long[] ids){
+        System.out.println(Arrays.toString(ids));
         return "redirect:/user/machineInfo";
     }
 }
