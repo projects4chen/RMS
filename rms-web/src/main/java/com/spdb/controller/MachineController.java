@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/machine")
 public class MachineController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class MachineController {
     @RequestMapping("/addMachine")
     public String addMachine(Machine machine){
         machineService.addMachine(machine);
-        return "redirect:/user/machineInfo";
+        return "redirect:/machine/machineInfo";
     }
 
     @RequestMapping("/toUpdateMachinePage")
@@ -42,7 +42,7 @@ public class MachineController {
         Machine machine = machineService.getMachineById(id);
         // 返回前端
         model.addAttribute("machine", machine);
-        System.out.println(machine);
+//        System.out.println(machine);
         return "/machine/update";
     }
 
@@ -50,18 +50,18 @@ public class MachineController {
     public String updateMachine(Machine machine){
         System.out.println(machine);
         machineService.updateMachine(machine);
-        return "redirect:/user/machineInfo";
+        return "redirect:/machine/machineInfo";
     }
 
     @RequestMapping("/deleteMachine")
     public String deleteMachine(Long id){
         machineService.deleteMachine(id);
-        return "redirect:/user/machineInfo";
+        return "redirect:/machine/machineInfo";
     }
 
     @RequestMapping("/deleteBatch")
     public String deleteBatch(@RequestBody Long[] ids){
         System.out.println(Arrays.toString(ids));
-        return "redirect:/user/machineInfo";
+        return "redirect:/machine/machineInfo";
     }
 }

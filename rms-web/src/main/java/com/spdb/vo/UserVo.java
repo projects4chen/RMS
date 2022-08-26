@@ -1,9 +1,9 @@
-package com.spdb.pojo;
+package com.spdb.vo;
 
 import lombok.Data;
 
 @Data
-public class User {
+public class UserVo {
 
     private Long userId;
 
@@ -13,6 +13,5 @@ public class User {
 
     private String password;
 
-    private Long identity;
-
+    private String identity;
 }

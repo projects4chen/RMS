@@ -48,7 +48,7 @@
 <div class="container-fluid">
     <div class="row">
         <!-- 侧边栏 -->
-        <div th:replace="~{commons/commons::sidebar(active='machine')}"></div>
+        <div th:replace="~{commons/commons::sidebar(active='user')}"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h2>
@@ -60,32 +60,26 @@
                 <table class="table table-striped table-sm" id="machineTable">
                     <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
-                        <th>id</th>
-                        <th>ip地址</th>
-                        <th>机器名字</th>
-                        <th>注册时间</th>
-                        <th>机器SID</th>
-                        <th>机器配置</th>
-                        <th>环境</th>
-                        <th>使用情况</th>
+                        <th><input type="checkbox" id="mainCheckBox" onclick="selectAll()"></th>
+                        <th>用户id</th>
+                        <th>账号</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>身份</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="machine:${machines}">
-                        <td><input type="checkbox" class="mcid" th:value="${machine.getMachineId()}"></td>
-                        <td th:text="${machine.getMachineId()}"></td>
-                        <td th:text="${machine.getIp()}"></td>
-                        <td th:text="${machine.getName()}"></td>
-                        <td th:text="${machine.getRegisterDate()}"></td>
-                        <td th:text="${machine.getSid()}"></td>
-                        <td th:text="${machine.getConfig()}"></td>
-                        <td th:text="${machine.getEnv()}"></td>
-                        <td th:text="${machine.getUseInfo()}"></td>
+                    <tr th:each="user:${users}">
+                        <td><input type="checkbox" class="mcid" th:value="${user.getUserId()}"></td>
+                        <td th:text="${user.getUserId()}"></td>
+                        <td th:text="${user.getUsername()}"></td>
+                        <td th:text="${user.getName()}"></td>
+                        <td th:text="${user.getPassword()}"></td>
+                        <td th:text="${user.getIdentity()}"></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(id=${machine.getMachineId()})}">编辑</a>
-                            <a class="btn btn-sm btn-danger" th:href="@{/user/deleteMachine(id=${machine.getMachineId()})}">删除</a>
+                            <a class="btn btn-sm btn-primary" th:href="@{/user/toUpdateMachinePage(id=${user.getUserId()})}">编辑</a>
+                            <a class="btn btn-sm btn-danger" th:href="@{/user/deleteMachine(id=${user.getUserId()})}">删除</a>
                         </td>
 
                     </tr>
@@ -167,6 +161,15 @@
                 // alert("提交失败"+JSON.stringify(message));
             }
         });
+    }
+    function selectAll(){
+        let mainCheckBox = document.getElementById("mainCheckBox");
+        let flag = mainCheckBox.checked;
+        let classList = document.getElementsByClassName("mcid");
+        for (let i = 0; i < classList.length; i++){
+            classList[i].checked = !!flag;
+        }
+
     }
 </script>
 </body>

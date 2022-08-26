@@ -4,10 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spdb.mapper.UserMapper">
 
+    <resultMap id="user" type="com.spdb.pojo.User">
+        <result property="userId" column="user_id"/>
+    </resultMap>
+
     <select id="getUserNameById" resultType="String">
         SELECT name
         FROM rms_db.user
         WHERE user_id = #{userId};
+    </select>
+
+    <select id="getAllUsers" resultMap="user">
+        SELECT *
+        FROM rms_db.user
     </select>
 
 </mapper>

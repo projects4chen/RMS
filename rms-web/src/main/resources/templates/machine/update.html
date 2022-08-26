@@ -51,7 +51,7 @@
         <div th:replace="~{commons/commons::sidebar(active='emps')}"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <form th:action="@{/user/updateMachine}">
+            <form th:action="@{/machine/updateMachine}">
                 <input type="hidden" name="machineId" th:value="${machine.getMachineId()}"/>
                 <div class="form-group">
                     <label>主机名</label>
