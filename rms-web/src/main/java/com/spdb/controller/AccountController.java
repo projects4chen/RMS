@@ -56,4 +56,10 @@ public class AccountController {
         accountService.updateAccount(account);
         return "redirect:/account/accountInfo";
     }
+
+    @RequestMapping("/deleteAccount")
+    public String deleteAccount(@RequestParam("id") Long id){
+        accountService.deleteAccount(id);
+        return "redirect:/account/accountInfo";
+    }
 }

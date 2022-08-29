@@ -32,4 +32,10 @@ public interface AccountService {
      * @param account
      */
     void updateAccount(Account account);
+
+    /**
+     * 根据id删除账号
+     * @param id
+     */
+    void deleteAccount(Long id);
 }

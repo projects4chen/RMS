@@ -35,4 +35,10 @@
         SET desp=#{desp}, username=#{username}, password=#{password}
         WHERE acc_id=#{accId}
     </update>
+
+    <delete id="deleteAccount" parameterType="Long">
+        DELETE
+        FROM rms_db.account
+        WHERE acc_id=#{id}
+    </delete>
 </mapper>

@@ -34,4 +34,9 @@ public class AccountServiceImpl implements AccountService {
     public void updateAccount(Account account) {
         accountMapper.updateAccount(account);
     }
+
+    @Override
+    public void deleteAccount(Long id) {
+        accountMapper.deleteAccount(id);
+    }
 }

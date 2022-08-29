@@ -19,4 +19,7 @@ public interface AccountMapper {
 
     // 更新账号信息
     void updateAccount(Account account);
+
+    // 根据id删除账号
+    void deleteAccount(Long id);
 }
