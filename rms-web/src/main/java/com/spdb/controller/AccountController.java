@@ -28,4 +28,16 @@ public class AccountController {
         return "/account/list";
     }
 
+    @RequestMapping("/toAddAccountPage")
+    public String toAddAccountPage(){
+        return "/account/add";
+    }
+
+    @RequestMapping("/addAccount")
+    public String addAccount(Model model, Account account){
+        // 获取当前用户的id，给ownerID（账号拥有者id）赋值，暂时设为1
+        account.setOwnerId(1L);
+        accountService.addAccount(account);
+        return "redirect:/account/accountInfo";
+    }
 }

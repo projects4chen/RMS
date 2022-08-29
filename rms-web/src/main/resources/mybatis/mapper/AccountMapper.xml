@@ -16,7 +16,12 @@
     <select id="getAllAccounts" resultMap="accountVo">
         SELECT acc_id, desp, a.username, a.password, nickname
         FROM rms_db.account as a, rms_db.user as u
-        WHERE a.acc_id=u.user_id;
+        WHERE a.owner_id=u.user_id;
     </select>
+
+    <insert id="addAccount" parameterType="com.spdb.pojo.Account">
+        INSERT INTO rms_db.account (acc_id, desp, username, password, owner_id)
+        VALUE (#{accId}, #{desp}, #{username}, #{password}, #{ownerId})
+    </insert>
 
 </mapper>

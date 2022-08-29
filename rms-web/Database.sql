@@ -148,6 +148,7 @@ INSERT INTO `account` VALUES (1, 'account for machine 1', 'admin', 'admin', 2);
 INSERT INTO `account` VALUES (2, 'account for machine 2', 'admin', 'admin', 2);
 INSERT INTO `account` VALUES (3, 'account for machine 1', 'tom', 'tom', 1);
 
+SELECT * FROM account;
 -- ----------------------------
 -- Table structure for share
 -- ----------------------------
