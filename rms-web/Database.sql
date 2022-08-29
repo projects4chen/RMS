@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
                         `user_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '用户id',
                         `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '账号',
-                        `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
+                        `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
                         `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
                         `identity` int(0) NOT NULL DEFAULT 0 COMMENT '身份',
                         PRIMARY KEY (`user_id`) USING BTREE
@@ -18,8 +18,29 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '张三', 'admin', 2);
-INSERT INTO `user` VALUES (2, 'tom', '李四', 'tom', 0);
+INSERT INTO `user` VALUES (1, 'admin', '张三', 'admin', 3);
+INSERT INTO `user` VALUES (2, 'tom', '李四', 'tom', 1);
+
+SELECT * FROM user;
+
+-- ----------------------------
+-- Table structure for identity
+-- ----------------------------
+DROP TABLE IF EXISTS `identity`;
+CREATE TABLE `identity` (
+                        `ident_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '身份标识',
+                        `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '身份解释',
+                        PRIMARY KEY (`ident_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of identity
+-- ----------------------------
+INSERT INTO `identity` VALUES (1, '普通用户');
+INSERT INTO `identity` VALUES (2, '管理员');
+INSERT INTO `identity` VALUES (3, '超级账号');
+
+SELECT * FROM identity;
 
 -- ----------------------------
 -- Table structure for message
@@ -106,6 +127,7 @@ CREATE TABLE `machine` (
 INSERT INTO `machine` VALUES (1, '10.0.0.1', 'mc_1', 'mc_1', 'null', 0, 0,'env1');
 INSERT INTO `machine` VALUES (2, '10.0.0.2', 'mc_2', 'mc_2', 'null', 0, 1,'env1');
 
+SELECT * FROM machine;
 -- ----------------------------
 -- Table structure for account
 -- ----------------------------

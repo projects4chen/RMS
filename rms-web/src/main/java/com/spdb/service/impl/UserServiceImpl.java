@@ -18,28 +18,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserVo> getAllUsers() {
-        List<User> users = userMapper.getAllUsers();
-        List<UserVo> userVos = new ArrayList<>();
-        for (User user : users) {
-            UserVo userVo = new UserVo();
-            // 根据身份类型返回相应的字符串
-            Long identity = user.getIdentity();
-            String ident = "";
-            if (identity == 0L) {
-                ident = "普通用户";
-            } else if (identity == 1L) {
-                ident = "管理员";
-            } else if (identity == 2L) {
-                ident = "超级管理员";
-            }
-            userVo.setIdentity(ident);
-            // 其他内容直接复制
-            userVo.setUserId(user.getUserId());
-            userVo.setUsername(user.getUsername());
-            userVo.setName(user.getName());
-            userVo.setPassword(user.getPassword());
-            userVos.add(userVo);
-        }
-        return userVos;
+        return userMapper.getAllUsers();
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userMapper.deleteUser(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userMapper.getUserById(id);
     }
 }
