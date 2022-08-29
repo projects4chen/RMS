@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spdb.mapper.AccountMapper">
+
+    <resultMap id="accountVo" type="com.spdb.vo.AccountVo">
+        <result property="accId" column="acc_id"/>
+        <result property="owner" column="nickname"/>
+    </resultMap>
+
+    <resultMap id="account" type="com.spdb.pojo.Account">
+        <result property="accId" column="acc_id"/>
+    </resultMap>
+
+    <select id="getAllAccounts" resultMap="accountVo">
+        SELECT acc_id, desp, a.username, a.password, nickname
+        FROM rms_db.account as a, rms_db.user as u
+        WHERE a.acc_id=u.user_id;
+    </select>
+
+</mapper>
