@@ -19,4 +19,17 @@ public interface AccountService {
      * @param account
      */
     void addAccount(Account account);
+
+    /**
+     * 根据id获取账号信息
+     * @param id
+     * @return
+     */
+    Account getAccountById(Long id);
+
+    /**
+     * 更新账号
+     * @param account
+     */
+    void updateAccount(Account account);
 }

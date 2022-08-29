@@ -13,4 +13,10 @@ public interface AccountMapper {
 
     // 添加账号
     void addAccount(Account account);
+
+    // 根据id获取账号
+    Account getAccountById(Long id);
+
+    // 更新账号信息
+    void updateAccount(Account account);
 }

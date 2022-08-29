@@ -19,9 +19,20 @@
         WHERE a.owner_id=u.user_id;
     </select>
 
+    <select id="getAccountById" resultMap="account">
+        SELECT *
+        FROM rms_db.account
+        WHERE acc_id=#{id}
+    </select>
+
     <insert id="addAccount" parameterType="com.spdb.pojo.Account">
         INSERT INTO rms_db.account (acc_id, desp, username, password, owner_id)
         VALUE (#{accId}, #{desp}, #{username}, #{password}, #{ownerId})
     </insert>
 
+    <update id="updateAccount" parameterType="com.spdb.pojo.Account">
+        UPDATE rms_db.account
+        SET desp=#{desp}, username=#{username}, password=#{password}
+        WHERE acc_id=#{accId}
+    </update>
 </mapper>

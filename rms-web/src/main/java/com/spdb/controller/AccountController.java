@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 import java.util.List;
@@ -34,10 +35,25 @@ public class AccountController {
     }
 
     @RequestMapping("/addAccount")
-    public String addAccount(Model model, Account account){
+    public String addAccount(Account account){
         // 获取当前用户的id，给ownerID（账号拥有者id）赋值，暂时设为1
         account.setOwnerId(1L);
         accountService.addAccount(account);
+        return "redirect:/account/accountInfo";
+    }
+
+    @RequestMapping("/toUpdateAccountPage")
+    public String toUpdateAccountPage(Model model, @RequestParam("id") Long id){
+        // 获取账号的信息
+        Account account = accountService.getAccountById(id);
+        // 返回前端
+        model.addAttribute("account", account);
+        return "/account/update";
+    }
+
+    @RequestMapping("/updateAccount")
+    public String updateAccount(Account account){
+        accountService.updateAccount(account);
         return "redirect:/account/accountInfo";
     }
 }

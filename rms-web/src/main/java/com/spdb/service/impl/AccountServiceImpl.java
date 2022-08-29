@@ -24,4 +24,14 @@ public class AccountServiceImpl implements AccountService {
     public void addAccount(Account account) {
         accountMapper.addAccount(account);
     }
+
+    @Override
+    public Account getAccountById(Long id) {
+        return accountMapper.getAccountById(id);
+    }
+
+    @Override
+    public void updateAccount(Account account) {
+        accountMapper.updateAccount(account);
+    }
 }
