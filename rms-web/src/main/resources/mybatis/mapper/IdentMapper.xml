@@ -12,4 +12,10 @@
         FROM rms_db.identity;
     </select>
 
+    <select id="getIdentityInfo" resultType="String">
+        SELECT description
+        FROM rms_db.identity
+        WHERE ident_id=#{identity}
+    </select>
+
 </mapper>

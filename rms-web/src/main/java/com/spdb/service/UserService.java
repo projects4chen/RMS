@@ -39,4 +39,11 @@ public interface UserService {
      * @return
      */
     User getUserById(Long id);
+
+    /**
+     * 根据用户名获取user
+     * @param username
+     * @return
+     */
+    User getUserByUsername(String username);
 }

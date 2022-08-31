@@ -31,6 +31,12 @@
         WHERE u.identity=i.ident_id
     </select>
 
+    <select id="getUserByUsername" resultMap="user">
+        SELECT *
+        FROM rms_db.user
+        WHERE username=#{username}
+    </select>
+
     <insert id="addUser" parameterType="com.spdb.pojo.User">
         INSERT INTO rms_db.user (user_id, username, nickname, password, identity)
         VALUES (#{userId}, #{username}, #{nickname}, #{password}, #{identity });

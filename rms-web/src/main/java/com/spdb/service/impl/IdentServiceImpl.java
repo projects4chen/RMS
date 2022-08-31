@@ -18,4 +18,9 @@ public class IdentServiceImpl implements IdentService {
     public List<Ident> getAllIdents() {
         return identMapper.getAllIdents();
     }
+
+    @Override
+    public String getIdentityInfo(Long identity) {
+        return identMapper.getIdentityInfo(identity);
+    }
 }

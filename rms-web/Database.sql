@@ -18,7 +18,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '张三', 'admin', 3);
+INSERT INTO `user` VALUES (1, 'admin', '张三', '$2a$10$6TDXDVqf8Yisa01.sXiDMekbTKqws6pdwTMyMitYMkYy5WBd6rPi.', 3);
 INSERT INTO `user` VALUES (2, 'tom', '李四', 'tom', 1);
 
 SELECT * FROM user;
@@ -36,9 +36,9 @@ CREATE TABLE `identity` (
 -- ----------------------------
 -- Records of identity
 -- ----------------------------
-INSERT INTO `identity` VALUES (1, '普通用户');
-INSERT INTO `identity` VALUES (2, '管理员');
-INSERT INTO `identity` VALUES (3, '超级账号');
+INSERT INTO `identity` VALUES (1, 'USER');
+INSERT INTO `identity` VALUES (2, 'ADMIN');
+INSERT INTO `identity` VALUES (3, 'ROOT');
 
 SELECT * FROM identity;
 

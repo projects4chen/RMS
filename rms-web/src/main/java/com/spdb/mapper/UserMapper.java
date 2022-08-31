@@ -26,4 +26,7 @@ public interface UserMapper {
 
     // 根据id查用户信息
     User getUserById(Long id);
+
+    // 根据username获取用户
+    User getUserByUsername(String username);
 }
