@@ -34,7 +34,7 @@ public class SecurityUserService implements UserDetailsService {
 
         // 1. 获取用户密码
         User user = userService.getUserByUsername(username);
-        System.out.println(user);
+//        System.out.println(user);
         if (user == null){
             return null;
         }
@@ -43,7 +43,7 @@ public class SecurityUserService implements UserDetailsService {
         // 3. 设置角色
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         String dbRole = identService.getIdentityInfo(user.getIdentity());
-        System.out.println(dbRole);
+//        System.out.println(dbRole);
         if(StringUtils.isNullOrEmpty(dbRole)){
             grantedAuthorities.add(DEFAULT_ROLE);
         }else{
