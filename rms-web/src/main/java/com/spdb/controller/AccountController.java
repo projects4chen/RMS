@@ -1,7 +1,9 @@
 package com.spdb.controller;
 
 import com.spdb.pojo.Account;
+import com.spdb.pojo.User;
 import com.spdb.service.AccountService;
+import com.spdb.utils.UserThreadLocal;
 import com.spdb.vo.AccountVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,7 @@ import java.util.List;
 public class AccountController {
 
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @RequestMapping("/accountInfo")
     public String accountInfo(Model model){
@@ -36,8 +38,6 @@ public class AccountController {
 
     @RequestMapping("/addAccount")
     public String addAccount(Account account){
-        // 获取当前用户的id，给ownerID（账号拥有者id）赋值，暂时设为1
-        account.setOwnerId(1L);
         accountService.addAccount(account);
         return "redirect:/account/accountInfo";
     }

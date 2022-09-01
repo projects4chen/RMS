@@ -52,6 +52,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <form th:action="@{/user/addUser}">
+                <label style="color: red" th:if="${msg!=null}" th:text="${msg!=null}?${msg}"></label>
                 <div class="form-group">
                     <label>账号</label>
                     <input type="text" name="username" class="form-control" placeholder="">

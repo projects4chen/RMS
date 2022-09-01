@@ -12,7 +12,7 @@ import java.util.List;
 public class IdentServiceImpl implements IdentService {
 
     @Autowired
-    IdentMapper identMapper;
+    private IdentMapper identMapper;
 
     @Override
     public List<Ident> getAllIdents() {

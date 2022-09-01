@@ -1,5 +1,5 @@
-# 数据库
 spring:
+  # 数据库
   datasource:
     username: root
     password: chenbing
@@ -8,6 +8,10 @@ spring:
   # 国际化
   messages:
     basename: i18n.login
+  # redis
+  redis:
+    host: localhost
+    port: 6379
 
 # mybatis
 mybatis:

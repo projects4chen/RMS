@@ -5,6 +5,7 @@ import com.spdb.pojo.User;
 import com.spdb.service.UserService;
 import com.spdb.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
     public List<UserVo> getAllUsers() {
@@ -22,8 +23,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
+    public boolean addUser(User user) {
+        // 1. 检查用户是否存在
+        User user1 = userMapper.getUserByUsername(user.getUsername());
+        if (user1 != null){
+            return false;
+        }
+        // 2. 将用户密码hash
+        String pwdHashCode = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(pwdHashCode);
         userMapper.addUser(user);
+        return true;
     }
 
     @Override

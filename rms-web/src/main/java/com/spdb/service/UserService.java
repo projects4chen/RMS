@@ -19,7 +19,7 @@ public interface UserService {
      * 添加一个用户
      * @param user
      */
-    void addUser(User user);
+    boolean addUser(User user);
 
     /**
      * 根据id删除用户

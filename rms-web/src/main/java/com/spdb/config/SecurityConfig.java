@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") //登录处理接口
                 .usernameParameter("username") //定义登录时的用户名的key 默认为username
                 .passwordParameter("password") //定义登录时的密码key，默认是password
-                .defaultSuccessUrl("/machine/machineInfo")
+                .defaultSuccessUrl("/main")
                 .failureUrl("/index.html")
                 .permitAll() //通过 不拦截，更加前面配的路径决定，这是指和登录表单相关的接口 都通过
                 .and().logout() //退出登录配置

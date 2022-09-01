@@ -18,10 +18,10 @@ import java.util.List;
 public class MachineServiceImpl implements MachineService {
 
     @Autowired
-    MachineMapper machineMapper;
+    private MachineMapper machineMapper;
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
     public List<MachineVo> getAllMachines() {

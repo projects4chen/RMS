@@ -22,10 +22,10 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    IdentService identService;
+    private IdentService identService;
 
     @RequestMapping("/userInfo")
     public String getAllUser(Model model){
@@ -43,10 +43,16 @@ public class UserController {
     }
 
     @RequestMapping("/addUser")
-    public String addUser(User user){
+    public String addUser(Model model, User user){
 //        System.out.println(user);
-        userService.addUser(user);
-        return "redirect:/user/userInfo";
+        if (userService.addUser(user)){
+            return "redirect:/user/userInfo";
+        } else {
+            model.addAttribute("msg", "账号已存在");
+            Collection<Ident> idents = identService.getAllIdents();
+            model.addAttribute("idents", idents);
+            return "/user/add";
+        }
     }
 
     @RequestMapping("/toUpdateUserPage")

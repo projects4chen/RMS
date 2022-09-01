@@ -16,7 +16,7 @@ import java.util.List;
 public class MachineController {
 
     @Autowired
-    MachineServiceImpl machineService;
+    private MachineServiceImpl machineService;
 
     @RequestMapping("/machineInfo")
     public String machineInfo(Model model){
