@@ -52,8 +52,8 @@
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<h2>
-						<a class="btn btn-sm btn-success" href="/machine/toAddMachinePage">添加机器</a>
-						<button class="btn btn-sm btn-danger" onclick="deleteBatch()">批量删除</button>
+						<a class="btn btn-sm btn-success" th:if="${isAdmin=='1'}" href="/machine/toAddMachinePage">添加机器</a>
+						<button class="btn btn-sm btn-danger" th:if="${isAdmin=='1'}" onclick="deleteBatch()">批量删除</button>
 					</h2>
 
 					<div class="table-responsive">
@@ -84,9 +84,10 @@
 									<td th:text="${machine.getEnv()}"></td>
 									<td th:text="${machine.getUseInfo()}"></td>
 									<td>
-										<a class="btn btn-sm btn-primary" th:href="@{/machine/toUpdateMachinePage(id=${machine.getMachineId()})}">编辑</a>
-										<a class="btn btn-sm btn-danger" th:href="@{/machine/deleteMachine(id=${machine.getMachineId()})}">删除</a>
-										<a class="btn btn-sm btn-success" th:href="@{/machine/deleteMachine(id=${machine.getMachineId()})}">申请</a>
+										<a class="btn btn-sm btn-primary" th:if="${isAdmin=='1'}" th:href="@{/machine/toUpdateMachinePage(id=${machine.getMachineId()})}">编辑</a>
+										<a class="btn btn-sm btn-danger" th:if="${isAdmin=='1'}" th:href="@{/machine/deleteMachine(id=${machine.getMachineId()})}">删除</a>
+										<a class="btn btn-sm btn-success" th:href="@{/machine/toApplyPage(id=${machine.getMachineId()})}">申请</a>
+										<a class="btn btn-sm btn-danger" th:href="@{/machine/toReleaseMachine(id=${machine.getMachineId()})}">释放</a>
 									</td>
 
 								</tr>

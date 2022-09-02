@@ -24,9 +24,9 @@ public class AccountController {
     @RequestMapping("/accountInfo")
     public String accountInfo(Model model){
         List<AccountVo> accountVos = accountService.getAllAccounts();
-        for (AccountVo accountVo : accountVos) {
-            System.out.println(accountVo);
-        }
+//        for (AccountVo accountVo : accountVos) {
+//            System.out.println(accountVo);
+//        }
         model.addAttribute("accounts", accountVos);
         return "/account/list";
     }
