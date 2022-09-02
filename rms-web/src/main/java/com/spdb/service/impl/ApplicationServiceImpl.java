@@ -45,4 +45,16 @@ public class ApplicationServiceImpl implements ApplicationService {
         List<ApplicationVo> applicationVos = applicationMapper.getAppsByUserId(userId);
         return applicationVos;
     }
+
+    @Override
+    public Application getAppById(Long appId) {
+        return applicationMapper.getAppById(appId);
+    }
+
+    @Override
+    public void updateApp(Long appId, String appBody) {
+        Application application = applicationMapper.getAppById(appId);
+        application.setAppBody(appBody);
+        applicationMapper.updateApp(application);
+    }
 }

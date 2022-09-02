@@ -29,4 +29,17 @@ public interface ApplicationMapper {
      * @return
      */
     List<ApplicationVo> getAppsByUserId(Long userId);
+
+    /**
+     * 根据id获取申请内容
+     * @param appId
+     * @return
+     */
+    Application getAppById(Long appId);
+
+    /**
+     * 更新申请
+     * @param application
+     */
+    void updateApp(Application application);
 }

@@ -1,5 +1,6 @@
 package com.spdb.service;
 
+import com.spdb.pojo.Application;
 import com.spdb.vo.ApplicationVo;
 import org.springframework.stereotype.Service;
 
@@ -29,4 +30,18 @@ public interface ApplicationService {
      * @return
      */
     List<ApplicationVo> getApplicationsByUserId(Long userId);
+
+    /**
+     * 根据id获取申请的内容
+     * @param appId
+     * @return
+     */
+    Application getAppById(Long appId);
+
+    /**
+     * 修改申请理由
+     * @param appId
+     * @param appBody
+     */
+    void updateApp(Long appId, String appBody);
 }

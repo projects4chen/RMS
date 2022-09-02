@@ -1,6 +1,8 @@
 package com.spdb.controller;
 
+import com.spdb.pojo.Application;
 import com.spdb.pojo.Machine;
+import com.spdb.pojo.User;
 import com.spdb.service.ApplicationService;
 import com.spdb.service.MachineService;
 import com.spdb.service.UserInfoService;
@@ -63,11 +65,27 @@ public class ApplicationController {
     }
 
     @RequestMapping("/myApplications")
-    public String myApplications(Model model, @RequestParam("userId") Long userId){
+    public String myApplications(Model model){
         userInfoService.retUserInfo(model);
         // 获取自己的申请
-        List<ApplicationVo> applicationVos = applicationService.getApplicationsByUserId(userId);
+        User user = userInfoService.getUser();
+        List<ApplicationVo> applicationVos = applicationService.getApplicationsByUserId(user.getUserId());
         model.addAttribute("apps", applicationVos);
         return "/application/myApplications";
+    }
+
+    @RequestMapping("/toUpdateAppPage")
+    public String toUpdateAppPage(Model model, @RequestParam("machineId") Long machineId, @RequestParam("appId") Long appId){
+        Machine machine = machineService.getMachineById(machineId);
+        Application application = applicationService.getAppById(appId);
+        model.addAttribute("machine", machine);
+        model.addAttribute("app", application);
+        return "/application/update";
+    }
+
+    @RequestMapping("/updateApp")
+    public String updateApp(@RequestParam("appId") Long appId, @RequestParam("appBody") String appBody){
+        applicationService.updateApp(appId, appBody);
+        return "redirect:/application/myApplications";
     }
 }
