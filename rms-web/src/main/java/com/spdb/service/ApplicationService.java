@@ -44,4 +44,10 @@ public interface ApplicationService {
      * @param appBody
      */
     void updateApp(Long appId, String appBody);
+
+    /**
+     * 将申请的状态改为“已撤销”
+     * @param appId
+     */
+    void revokeApp(Long appId);
 }

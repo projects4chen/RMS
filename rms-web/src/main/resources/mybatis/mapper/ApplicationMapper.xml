@@ -54,7 +54,7 @@
 
     <update id="updateApp" parameterType="com.spdb.pojo.Application">
         UPDATE rms_db.application
-        SET app_body=#{appBody}
+        SET state=#{state}, app_body=#{appBody}
         WHERE app_id=#{appId}
     </update>
 </mapper>

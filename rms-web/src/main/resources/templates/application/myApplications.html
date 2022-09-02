@@ -79,7 +79,7 @@
                         <td th:text="${app.getState()}"></td>
                         <td>
                             <a class="btn btn-sm btn-primary" th:if="${app.getState()=='待审批'}" th:href="@{/application/toUpdateAppPage(machineId=${app.getMachineId()},appId=${app.getAppId()})}">编辑</a>
-                            <a class="btn btn-sm btn-danger" th:if="${app.getState()=='待审批'}" th:href="@{/application/revoke(id=${app.getAppId()})}">撤销</a>
+                            <a class="btn btn-sm btn-danger" th:if="${app.getState()=='待审批'}" th:href="@{/application/revokeApp(appId=${app.getAppId()})}">撤销</a>
                         </td>
 
                     </tr>

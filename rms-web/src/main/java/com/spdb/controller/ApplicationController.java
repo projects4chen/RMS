@@ -88,4 +88,9 @@ public class ApplicationController {
         applicationService.updateApp(appId, appBody);
         return "redirect:/application/myApplications";
     }
+    @RequestMapping("/revokeApp")
+    public String revokeApp(@RequestParam("appId") Long appId){
+        applicationService.revokeApp(appId);
+        return "redirect:/application/myApplications";
+    }
 }

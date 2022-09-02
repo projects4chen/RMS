@@ -57,4 +57,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         application.setAppBody(appBody);
         applicationMapper.updateApp(application);
     }
+
+    @Override
+    public void revokeApp(Long appId) {
+        Application application = applicationMapper.getAppById(appId);
+        application.setState("已撤销");
+        applicationMapper.updateApp(application);
+    }
 }
