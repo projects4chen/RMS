@@ -7,6 +7,7 @@ import com.spdb.vo.ApplicationVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +44,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     public List<ApplicationVo> getApplicationsByUserId(Long userId) {
         // 获取所有的申请
         List<ApplicationVo> applicationVos = applicationMapper.getAppsByUserId(userId);
+        for (ApplicationVo applicationVo : applicationVos) {
+            long date = Long.parseLong(applicationVo.getAppDate());
+            applicationVo.setAppDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(date)));
+        }
         return applicationVos;
     }
 

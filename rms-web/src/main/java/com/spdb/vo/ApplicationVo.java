@@ -6,7 +6,7 @@ import lombok.Data;
 public class ApplicationVo {
     private Long appId;
 
-    private Long appDate;
+    private String appDate;
 
     private Long applicantId;
 
