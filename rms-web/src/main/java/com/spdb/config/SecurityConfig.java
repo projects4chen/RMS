@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/machine/**").hasAnyAuthority("USER", "ADMIN", "ROOT")
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN", "ROOT")
                 .antMatchers("/account/**").hasAnyAuthority("USER", "ADMIN", "ROOT")
+                .antMatchers("/application/**").hasAnyAuthority("USER", "ADMIN", "ROOT")
                 .and().formLogin()
                 .loginPage("/index.html") //自定义的登录页面
                 .loginProcessingUrl("/login") //登录处理接口

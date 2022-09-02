@@ -73,7 +73,7 @@ CREATE TABLE `application` (
                                `app_date` bigint(0) NULL DEFAULT NULL COMMENT '申请时间',
                                `applicant_id` bigint(0) NOT NULL COMMENT '申请人id',
                                `machine_id` bigint(0) NOT NULL COMMENT '机器id',
-                               `state` int(1) NULL DEFAULT NULL COMMENT '状态',
+                               `state` varchar(10) NULL DEFAULT NULL COMMENT '状态',
                                `app_body` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '申请内容',
                                `rep_body` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '审批内容',
                                PRIMARY KEY (`app_id`) USING BTREE
@@ -82,9 +82,20 @@ CREATE TABLE `application` (
 -- ----------------------------
 -- Records of application
 -- ----------------------------
-INSERT INTO `application` VALUES (1, 0, 2, 1, 0, 'I need it', '');
-INSERT INTO `application` VALUES (2, 0, 2, 2, 0, 'I need it', '');
+INSERT INTO `application` VALUES (1, 0, 2, 1, '待审批', 'I need it', '');
+INSERT INTO `application` VALUES (2, 0, 2, 2, '审批未通过', 'I need it', 'no');
+INSERT INTO `application` VALUES (3, 0, 2, 2, '审批通过', 'I need it', 'ok');
 
+SELECT * FROM application;
+SELECT state
+FROM rms_db.application
+WHERE applicant_id=2 and machine_id=1
+ORDER BY app_date DESC LIMIT 1;
+
+SELECT app_id, app_date, applicant_id, u.nickname, a.machine_id, m.name, m.ip, m.config, a.state, a.app_body, a.rep_body
+FROM rms_db.application as a, rms_db.user as u, rms_db.machine as m
+WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id
+ORDER BY app_date DESC;
 -- ----------------------------
 -- Table structure for log
 -- ----------------------------

@@ -33,6 +33,7 @@ public class UserInfoService {
             // 在，返回
             User user = JSON.parseObject(userJson, User.class);
             if (user != null){
+                model.addAttribute("userId", user.getUserId());
                 model.addAttribute("nickname", user.getNickname());
                 if (user.getIdentity() == 1)
                     model.addAttribute("isAdmin", "0");
@@ -40,5 +41,15 @@ public class UserInfoService {
                     model.addAttribute("isAdmin", "1");
             }
         }
+    }
+
+    public User getUser(){
+        // 获取当前用户名
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        // 从redis中取出
+        String userJson = redisTemplate.opsForValue().get("USER_" + username);
+        // 还原为user
+        return JSON.parseObject(userJson, User.class);
     }
 }

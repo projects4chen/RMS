@@ -57,6 +57,7 @@
 					</h2>
 
 					<div class="table-responsive">
+						<label style="color: red" th:if="${msg!=null}" th:text="${msg!=null}?${msg}"></label>
 						<table class="table table-striped table-sm" id="machineTable">
 							<thead>
 								<tr>
@@ -86,7 +87,7 @@
 									<td>
 										<a class="btn btn-sm btn-primary" th:if="${isAdmin=='1'}" th:href="@{/machine/toUpdateMachinePage(id=${machine.getMachineId()})}">编辑</a>
 										<a class="btn btn-sm btn-danger" th:if="${isAdmin=='1'}" th:href="@{/machine/deleteMachine(id=${machine.getMachineId()})}">删除</a>
-										<a class="btn btn-sm btn-success" th:href="@{/machine/toApplyPage(id=${machine.getMachineId()})}">申请</a>
+										<a class="btn btn-sm btn-success" th:href="@{/machine/toApplyPage(machineId=${machine.getMachineId()}, userId=${userId})}">申请</a>
 										<a class="btn btn-sm btn-danger" th:href="@{/machine/toReleaseMachine(id=${machine.getMachineId()})}">释放</a>
 									</td>
 

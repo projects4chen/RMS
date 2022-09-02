@@ -3,16 +3,15 @@ package com.spdb.service.impl;
 import com.spdb.mapper.MachineMapper;
 import com.spdb.mapper.UserMapper;
 import com.spdb.pojo.Machine;
+import com.spdb.service.ApplicationService;
 import com.spdb.service.MachineService;
+import com.spdb.service.UserInfoService;
 import com.spdb.vo.MachineVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MachineServiceImpl implements MachineService {
@@ -22,6 +21,12 @@ public class MachineServiceImpl implements MachineService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserInfoService userInfoService;
+
+    @Autowired
+    private ApplicationService applicationService;
 
     @Override
     public List<MachineVo> getAllMachines() {
@@ -77,5 +82,13 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public void deleteMachine(Long id) {
         machineMapper.deleteMachine(id);
+    }
+
+    @Override
+    public boolean hasApplied(Long machineId, Long userId) {
+        // 获取该机器的使用者id
+        Long useId = machineMapper.getMachineById(machineId).getUserId();
+        // 判断
+        return 0L != useId;
     }
 }

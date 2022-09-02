@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spdb.mapper.ApplicationMapper">
+
+    <resultMap id="applicationVo" type="com.spdb.vo.ApplicationVo">
+        <result property="appId" column="app_id"/>
+        <result property="appDate" column="app_date"/>
+        <result property="applicantId" column="applicant_id"/>
+        <result property="userName" column="nickname"/>
+        <result property="machineId" column="machine_id"/>
+        <result property="machineName" column="name"/>
+        <result property="machineIp" column="ip"/>
+        <result property="machineConfig" column="config"/>
+        <result property="state" column="state"/>
+        <result property="appBody" column="app_body"/>
+        <result property="repBody" column="rep_body"/>
+    </resultMap>
+
+    <insert id="addApplication" parameterType="com.spdb.pojo.Application">
+        INSERT INTO rms_db.application (app_date, applicant_id, machine_id, state, app_body, rep_body)
+        VALUE (#{appDate}, #{applicantId}, #{machineId}, #{state}, #{appBody}, #{repBody})
+    </insert>
+
+    <select id="getAppState" resultType="String">
+        SELECT state
+        FROM rms_db.application
+        WHERE applicant_id=#{userId} and machine_id=#{machineId}
+        ORDER BY app_date DESC LIMIT 1
+    </select>
+
+    <select id="getAppsByUserId" resultMap="applicationVo">
+        SELECT app_id, app_date, applicant_id, u.nickname, a.machine_id, m.name, m.ip, m.config, a.state, a.app_body, a.rep_body
+        FROM rms_db.application as a, rms_db.user as u, rms_db.machine as m
+        WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id
+        ORDER BY app_date DESC;
+    </select>
+
+</mapper>

@@ -3,6 +3,7 @@ package com.spdb.controller;
 import com.alibaba.fastjson.JSON;
 import com.spdb.pojo.Machine;
 import com.spdb.pojo.User;
+import com.spdb.service.ApplicationService;
 import com.spdb.service.UserInfoService;
 import com.spdb.service.impl.MachineServiceImpl;
 import com.spdb.vo.MachineVo;
@@ -25,6 +26,8 @@ public class MachineController {
     private MachineServiceImpl machineService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private ApplicationService applicationService;
 
     @RequestMapping("/machineInfo")
     public String machineInfo(Model model){
@@ -77,4 +80,40 @@ public class MachineController {
     }
 
 
+    @RequestMapping("/toApplyPage")
+    public String toApplyPage(Model model, @RequestParam("machineId") Long machineId, @RequestParam("userId") Long userId){
+        userInfoService.retUserInfo(model);
+        boolean check = false;
+        String msg = "";
+        // 检测是否重复申请
+        if (machineService.hasApplied(machineId, userId)) {
+            check = true;
+            msg = "该机器已被申请";
+        // 检测是否已申请
+        } else if (applicationService.isBeingApplied(machineId, userId)) {
+            check = true;
+            msg = "您的申请待审批";
+        }
+        if (check) {
+            model.addAttribute("msg", msg);
+            // 获取机器信息
+            List<MachineVo> machineVos = machineService.getAllMachines();
+            model.addAttribute("machines", machineVos);
+            userInfoService.retUserInfo(model);
+            return "/machine/list";
+        } else {
+            // 满足申请要求，获取该机器信息，返回申请页面
+            Machine machine = machineService.getMachineById(machineId);
+            model.addAttribute("machine", machine);
+        }
+        return "/machine/application";
+    }
+
+    @RequestMapping("/appMachine")
+    public String appMachine(@RequestParam("machineId") Long machineId, @RequestParam("userId") Long userId,
+                             @RequestParam("reason") String reason){
+        System.out.println("test:" + machineId + ", " + userId + ", " + reason);
+        applicationService.addApplication(machineId, userId, reason);
+        return "redirect:/machine/machineInfo";
+    }
 }

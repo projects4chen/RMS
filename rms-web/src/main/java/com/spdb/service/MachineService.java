@@ -37,4 +37,12 @@ public interface MachineService {
      * @param id
      */
     void deleteMachine(Long id);
+
+    /**
+     * 当前用户是否已经申请该机器
+     * @param machineId
+     * @param userId
+     * @return
+     */
+    boolean hasApplied(Long machineId, Long userId);
 }
