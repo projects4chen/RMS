@@ -69,4 +69,17 @@ public class ApplicationServiceImpl implements ApplicationService {
         application.setState("已撤销");
         applicationMapper.updateApp(application);
     }
+
+    @Override
+    public List<ApplicationVo> getAllPendingApps() {
+        // 查出所有待审批的申请
+        List<ApplicationVo> applicationVos = applicationMapper.getAllPendingApps();
+        // 时间替换
+        for (ApplicationVo applicationVo : applicationVos) {
+            long date = Long.parseLong(applicationVo.getAppDate());
+            applicationVo.setAppDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(date)));
+        }
+        return applicationVos;
+    }
+
 }

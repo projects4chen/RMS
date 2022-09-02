@@ -42,7 +42,7 @@
     <select id="getAppsByUserId" resultMap="applicationVo">
         SELECT app_id, app_date, applicant_id, u.nickname, a.machine_id, m.name, m.ip, m.config, a.state, a.app_body, a.rep_body
         FROM rms_db.application as a, rms_db.user as u, rms_db.machine as m
-        WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id
+        WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id and applicant_id=#{userId}
         ORDER BY app_date DESC;
     </select>
 
@@ -57,4 +57,11 @@
         SET state=#{state}, app_body=#{appBody}
         WHERE app_id=#{appId}
     </update>
+
+    <select id="getAllPendingApps" resultMap="applicationVo">
+        SELECT app_id, app_date, applicant_id, u.nickname, a.machine_id, m.name, m.ip, m.config, a.state, a.app_body, a.rep_body
+        FROM rms_db.application as a, rms_db.user as u, rms_db.machine as m
+        WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id and a.state='待审批'
+        ORDER BY app_date DESC;
+    </select>
 </mapper>

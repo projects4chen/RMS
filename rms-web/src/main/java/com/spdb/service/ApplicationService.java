@@ -50,4 +50,11 @@ public interface ApplicationService {
      * @param appId
      */
     void revokeApp(Long appId);
+
+    /**
+     * 获取所有待审批的申请
+     * @return
+     */
+    List<ApplicationVo> getAllPendingApps();
+
 }

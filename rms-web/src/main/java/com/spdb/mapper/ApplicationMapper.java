@@ -42,4 +42,10 @@ public interface ApplicationMapper {
      * @param application
      */
     void updateApp(Application application);
+
+    /**
+     * 获取所有待审批的申请
+     * @return
+     */
+    List<ApplicationVo> getAllPendingApps();
 }
