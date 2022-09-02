@@ -51,7 +51,7 @@
         <div th:replace="~{commons/commons::sidebar(active='machine')}"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <form th:action="@{/machine/appMachine}">
+            <form th:action="@{/application/appMachine}">
                 <input type="hidden" name="machineId" th:value="${machine.getMachineId()}"/>
                 <input type="hidden" name="userId" th:value="${userId}"/>
                 <div class="form-group">

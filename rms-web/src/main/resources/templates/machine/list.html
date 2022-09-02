@@ -87,8 +87,8 @@
 									<td>
 										<a class="btn btn-sm btn-primary" th:if="${isAdmin=='1'}" th:href="@{/machine/toUpdateMachinePage(id=${machine.getMachineId()})}">编辑</a>
 										<a class="btn btn-sm btn-danger" th:if="${isAdmin=='1'}" th:href="@{/machine/deleteMachine(id=${machine.getMachineId()})}">删除</a>
-										<a class="btn btn-sm btn-success" th:href="@{/machine/toApplyPage(machineId=${machine.getMachineId()}, userId=${userId})}">申请</a>
-										<a class="btn btn-sm btn-danger" th:href="@{/machine/toReleaseMachine(id=${machine.getMachineId()})}">释放</a>
+										<a class="btn btn-sm btn-success" th:href="@{/application/toApplyPage(machineId=${machine.getMachineId()}, userId=${userId})}">申请</a>
+										<a class="btn btn-sm btn-danger" th:href="@{/application/toReleaseMachine(id=${machine.getMachineId()})}">释放</a>
 									</td>
 
 								</tr>
