@@ -21,4 +21,7 @@ public interface MachineMapper {
 
     // 根据id删除机器
     void deleteMachine(Long id);
+
+    // 更新机器的使用者
+    void updateMachineUser(Long machineId, Long userId);
 }

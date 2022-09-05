@@ -57,4 +57,10 @@ public interface ApplicationService {
      */
     List<ApplicationVo> getAllPendingApps();
 
+    /**
+     * 审批机器申请：同意或拒绝
+     * @param appId
+     * @param agree 1为同意，0位拒绝
+     */
+    void approvalApp(Long appId, int agree);
 }

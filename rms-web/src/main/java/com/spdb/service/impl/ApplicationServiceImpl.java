@@ -1,7 +1,9 @@
 package com.spdb.service.impl;
 
 import com.spdb.mapper.ApplicationMapper;
+import com.spdb.mapper.MachineMapper;
 import com.spdb.pojo.Application;
+import com.spdb.pojo.Machine;
 import com.spdb.service.ApplicationService;
 import com.spdb.vo.ApplicationVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Autowired
     private ApplicationMapper applicationMapper;
+
+    @Autowired
+    private MachineMapper machineMapper;
 
     @Override
     public void addApplication(Long machineId, Long userId, String reason) {
@@ -80,6 +85,24 @@ public class ApplicationServiceImpl implements ApplicationService {
             applicationVo.setAppDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(date)));
         }
         return applicationVos;
+    }
+
+    @Override
+    public void approvalApp(Long appId, int agree) {
+        Application application = applicationMapper.getAppById(appId);
+        // 同意申请
+        if (agree == 1){
+            // 1. 更新申请工单的状态
+            application.setState("通过");
+            applicationMapper.updateApp(application);
+            // 2. 更新机器的使用情况（使用者id）
+            machineMapper.updateMachineUser(application.getMachineId(), application.getApplicantId());
+        } else {    // 拒绝
+            // 更新申请工单状态
+            application.setState("拒绝");
+            applicationMapper.updateApp(application);
+        }
+
     }
 
 }

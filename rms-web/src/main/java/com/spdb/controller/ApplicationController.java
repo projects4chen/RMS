@@ -105,9 +105,9 @@ public class ApplicationController {
         return "/application/approval";
     }
 
-//    @RequestMapping("/approvalApp")
-//    public String approvalApp(@RequestParam("appId") Long appId, @RequestParam("agree") int agree){
-//        applicationService.approvalApp(appId, agree);
-//        return "redirect:/application/allPendingApps";
-//    }
+    @RequestMapping("/approvalApp")
+    public String approvalApp(@RequestParam("appId") Long appId, @RequestParam("agree") int agree){
+        applicationService.approvalApp(appId, agree);
+        return "redirect:/application/allPendingApps";
+    }
 }

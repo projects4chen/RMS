@@ -32,6 +32,12 @@
         WHERE machine_id=#{machineId}
     </update>
 
+    <update id="updateMachineUser">
+        UPDATE rms_db.machine
+        SET user_id=#{userId}
+        WHERE machine_id=#{machineId}
+    </update>
+
     <delete id="deleteMachine" parameterType="Long">
         DELETE
         FROM rms_db.machine
