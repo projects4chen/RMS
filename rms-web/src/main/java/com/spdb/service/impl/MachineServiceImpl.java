@@ -3,6 +3,7 @@ package com.spdb.service.impl;
 import com.spdb.mapper.MachineMapper;
 import com.spdb.mapper.UserMapper;
 import com.spdb.pojo.Machine;
+import com.spdb.pojo.User;
 import com.spdb.service.ApplicationService;
 import com.spdb.service.MachineService;
 import com.spdb.service.UserInfoService;
@@ -47,6 +48,7 @@ public class MachineServiceImpl implements MachineService {
                 machineVo.setUseInfo(userName);
             }
             // 其余内容直接复制
+            machineVo.setUserId(machine.getUserId());
             machineVo.setMachineId(machine.getMachineId());
             machineVo.setIp(machine.getIp());
             machineVo.setName(machine.getName());
@@ -90,5 +92,17 @@ public class MachineServiceImpl implements MachineService {
         Long useId = machineMapper.getMachineById(machineId).getUserId();
         // 判断
         return 0L != useId;
+    }
+
+    @Override
+    public void releaseMachine(Long machineId) {
+        // 检验是否是使用者本人或管理员
+        Machine machine = machineMapper.getMachineById(machineId);
+        User user = userInfoService.getUser();
+        if (Objects.equals(machine.getUserId(), user.getUserId()) || user.getIdentity() != 1){
+            // 释放
+            machine.setUserId(0L);
+            machineMapper.updateMachineUser(machineId, 0L);
+        }
     }
 }

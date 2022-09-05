@@ -45,4 +45,10 @@ public interface MachineService {
      * @return
      */
     boolean hasApplied(Long machineId, Long userId);
+
+    /**
+     * 释放机器
+     * @param machineId
+     */
+    void releaseMachine(Long machineId);
 }

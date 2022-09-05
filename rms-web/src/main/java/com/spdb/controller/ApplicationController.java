@@ -110,4 +110,10 @@ public class ApplicationController {
         applicationService.approvalApp(appId, agree);
         return "redirect:/application/allPendingApps";
     }
+
+    @RequestMapping("/releaseMachine")
+    public String releaseMachine(@RequestParam("machineId") Long machineId){
+        machineService.releaseMachine(machineId);
+        return "redirect:/machine/machineInfo";
+    }
 }

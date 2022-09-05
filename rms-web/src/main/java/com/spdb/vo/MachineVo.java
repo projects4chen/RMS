@@ -16,6 +16,8 @@ public class MachineVo {
 
     private String config;
 
+    private Long userId;
+
     private String useInfo;
 
     private String env;
