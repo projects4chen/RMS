@@ -11,6 +11,7 @@
 
     <resultMap id="account" type="com.spdb.pojo.Account">
         <result property="accId" column="acc_id"/>
+        <result property="ownerId" column="owner_id"/>
     </resultMap>
 
     <select id="getAllAccounts" resultMap="accountVo">
@@ -23,6 +24,16 @@
         SELECT *
         FROM rms_db.account
         WHERE acc_id=#{id}
+    </select>
+
+    <select id="getOwnedAndSharedAccount" resultMap="accountVo">
+        SELECT acc_id, desp, a.username, a.password, nickname
+        FROM rms_db.account as a, rms_db.user as u
+        WHERE a.owner_id=u.user_id and u.user_id=#{userId}
+        UNION
+        SELECT a2.acc_id, a2.desp, a2.username, a2.password, u2.nickname
+        FROM rms_db.share as s, rms_db.account as a2, rms_db.user as u2
+        WHERE s.to_who=#{userId} and s.state='已同意' and s.acc_id = a2.acc_id and a2.owner_id=u2.user_id;
     </select>
 
     <insert id="addAccount" parameterType="com.spdb.pojo.Account">

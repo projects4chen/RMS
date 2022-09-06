@@ -167,15 +167,17 @@ DROP TABLE IF EXISTS `share`;
 CREATE TABLE `share` (
                          `sh_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '分享记录id',
                          `acc_id` bigint(0) NOT NULL COMMENT '账号id',
-                         `towho_id` bigint(0) NOT NULL COMMENT '被分享者id',
+                         `to_who` bigint(0) NOT NULL COMMENT '被分享者id',
                          `sh_date` bigint(0) NOT NULL COMMENT '分享时间',
-                         `duration` bigint(0) NOT NULL COMMENT '持续时间',
+                         `state` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '当前状态',
                          PRIMARY KEY (`sh_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of share
 -- ----------------------------
-INSERT INTO `share` VALUES (1, 1, 1, 0, 360000);
-INSERT INTO `share` VALUES (2, 2, 1, 0, 360000);
-INSERT INTO `share` VALUES (3, 3, 2, 0, 360000);
+INSERT INTO `share` VALUES (1, 1, 1, 0, '已同意');
+INSERT INTO `share` VALUES (2, 2, 1, 0, '已拒绝');
+INSERT INTO `share` VALUES (3, 3, 2, 0, '待处理');
+
+SELECT * FROM share;

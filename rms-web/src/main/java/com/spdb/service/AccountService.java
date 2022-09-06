@@ -1,7 +1,9 @@
 package com.spdb.service;
 
 import com.spdb.pojo.Account;
+import com.spdb.pojo.SharedAccount;
 import com.spdb.vo.AccountVo;
+import com.spdb.vo.SharedAccountVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,4 +40,25 @@ public interface AccountService {
      * @param id
      */
     void deleteAccount(Long id);
+
+    /**
+     * 申请共享账号
+     * @param accountId
+     * @param userId
+     */
+    void shareAccount(Long accountId, Long userId);
+
+    /**
+     * 根据用户id获取分享给他且未处理的共享请求
+     * @param userId
+     * @return
+     */
+    List<SharedAccountVo> getSharedRecordsByUserId(Long userId);
+
+    /**
+     * 根据用户id获取自己拥有和共享的账号
+     * @param userId
+     * @return
+     */
+    List<AccountVo> getOwnedAndSharedAccount(Long userId);
 }

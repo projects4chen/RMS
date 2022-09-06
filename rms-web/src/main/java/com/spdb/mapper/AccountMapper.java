@@ -22,4 +22,11 @@ public interface AccountMapper {
 
     // 根据id删除账号
     void deleteAccount(Long id);
+
+    /**
+     * 根据用户id查出拥有和共享的账号信息
+     * @param userId
+     * @return
+     */
+    List<AccountVo> getOwnedAndSharedAccount(Long userId);
 }

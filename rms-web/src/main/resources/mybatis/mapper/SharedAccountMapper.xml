@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spdb.mapper.SharedAccountMapper">
+
+    <resultMap id="sharedAccount" type="com.spdb.pojo.SharedAccount">
+        <result property="sharedId" column="sh_id"/>
+        <result property="accountId" column="acc_id"/>
+        <result property="toWhoId" column="to_who"/>
+        <result property="sharedDate" column="sh_date"/>
+        <result property="isValid" column="is_valid"/>
+    </resultMap>
+
+    <resultMap id="sharedAccountVo" type="com.spdb.vo.SharedAccountVo">
+        <result property="sharedId" column="sh_id"/>
+        <result property="accountId" column="acc_id"/>
+        <result property="toWhoId" column="to_who"/>
+        <result property="sharedDate" column="sh_date"/>
+        <result property="owner" column="nickname"/>
+    </resultMap>
+
+    <insert id="addRecord" parameterType="com.spdb.pojo.SharedAccount">
+        INSERT INTO rms_db.share (sh_id, acc_id, to_who, sh_date, is_valid)
+            VALUE (#{sharedId}, #{accountId}, #{toWhoId}, #{sharedDate}, #{isValid})
+    </insert>
+
+    <select id="getRecordByAccAndUserId" resultMap="sharedAccount">
+        SELECT *
+        FROM rms_db.share
+        WHERE acc_id=#{accountId} and to_who=#{userId}
+    </select>
+
+    <select id="getSharedRecordsByUserId" resultMap="sharedAccountVo">
+        SELECT sh_id, s.acc_id, to_who, sh_date, s.state, u.username, desp, u.nickname
+        FROM rms_db.share as s, rms_db.account as a, rms_db.user as u
+        WHERE s.to_who=#{userId} and s.acc_id=a.acc_id and a.owner_id=u.user_id
+        ORDER BY sh_date DESC;
+    </select>
+
+</mapper>

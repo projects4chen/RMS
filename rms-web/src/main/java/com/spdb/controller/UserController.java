@@ -4,6 +4,7 @@ import com.spdb.mapper.UserMapper;
 import com.spdb.pojo.Ident;
 import com.spdb.pojo.User;
 import com.spdb.service.IdentService;
+import com.spdb.service.UserInfoService;
 import com.spdb.service.UserService;
 import com.spdb.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,12 @@ public class UserController {
     @Autowired
     private IdentService identService;
 
+    @Autowired
+    private UserInfoService userInfoService;
+
     @RequestMapping("/userInfo")
     public String getAllUser(Model model){
+        userInfoService.retUserInfo(model);
         List<UserVo> userVos = userService.getAllUsers();
         model.addAttribute("users", userVos);
         return "/user/list";
@@ -78,4 +83,5 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/user/userInfo";
     }
+
 }
