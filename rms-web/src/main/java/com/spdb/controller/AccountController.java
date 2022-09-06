@@ -103,4 +103,6 @@ public class AccountController {
         model.addAttribute("accounts", sharedAccounts);
         return "/account/application";
     }
+
+
 }

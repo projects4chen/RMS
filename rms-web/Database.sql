@@ -12,14 +12,15 @@ CREATE TABLE `user` (
                         `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
                         `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
                         `identity` int(0) NOT NULL DEFAULT 0 COMMENT '身份',
+                        `is_valid` int(0) NOT NULL DEFAULT 1 COMMENT '是否有效',
                         PRIMARY KEY (`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '张三', '$2a$10$6TDXDVqf8Yisa01.sXiDMekbTKqws6pdwTMyMitYMkYy5WBd6rPi.', 3);
-INSERT INTO `user` VALUES (2, 'tom', '李四', 'tom', 1);
+INSERT INTO `user` VALUES (1, 'admin', '张三', '$2a$10$6TDXDVqf8Yisa01.sXiDMekbTKqws6pdwTMyMitYMkYy5WBd6rPi.', 3, 1);
+INSERT INTO `user` VALUES (2, 'tom', '李四', 'tom', 1, 1);
 
 SELECT * FROM user;
 
@@ -87,15 +88,15 @@ INSERT INTO `application` VALUES (2, 0, 2, 2, '审批未通过', 'I need it', 'n
 INSERT INTO `application` VALUES (3, 0, 2, 2, '审批通过', 'I need it', 'ok');
 
 SELECT * FROM application;
-SELECT state
-FROM rms_db.application
-WHERE applicant_id=2 and machine_id=1
-ORDER BY app_date DESC LIMIT 1;
-
-SELECT app_id, app_date, applicant_id, u.nickname, a.machine_id, m.name, m.ip, m.config, a.state, a.app_body, a.rep_body
-FROM rms_db.application as a, rms_db.user as u, rms_db.machine as m
-WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id
-ORDER BY app_date DESC;
+# SELECT state
+# FROM rms_db.application
+# WHERE applicant_id=2 and machine_id=1
+# ORDER BY app_date DESC LIMIT 1;
+#
+# SELECT app_id, app_date, applicant_id, u.nickname, a.machine_id, m.name, m.ip, m.config, a.state, a.app_body, a.rep_body
+# FROM rms_db.application as a, rms_db.user as u, rms_db.machine as m
+# WHERE a.machine_id=m.machine_id and a.applicant_id=u.user_id
+# ORDER BY app_date DESC;
 -- ----------------------------
 -- Table structure for log
 -- ----------------------------
@@ -129,14 +130,15 @@ CREATE TABLE `machine` (
                            `register_date` bigint(0) NOT NULL COMMENT '注册时间',
                            `user_id` bigint(0) NOT NULL COMMENT '使用者id',
                            `env` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '环境',
+                           `is_valid` int(0) NOT NULL DEFAULT 1 COMMENT '是否有效',
                            PRIMARY KEY (`machine_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of machine
 -- ----------------------------
-INSERT INTO `machine` VALUES (1, '10.0.0.1', 'mc_1', 'mc_1', 'null', 0, 0,'env1');
-INSERT INTO `machine` VALUES (2, '10.0.0.2', 'mc_2', 'mc_2', 'null', 0, 1,'env1');
+INSERT INTO `machine` VALUES (1, '10.0.0.1', 'mc_1', 'mc_1', 'null', 0, 0,'env1', 1);
+INSERT INTO `machine` VALUES (2, '10.0.0.2', 'mc_2', 'mc_2', 'null', 0, 1,'env1', 1);
 
 SELECT * FROM machine;
 -- ----------------------------
@@ -149,15 +151,16 @@ CREATE TABLE `account` (
                            `username` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '账号',
                            `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
                            `owner_id` bigint(0) NOT NULL COMMENT '拥有者id',
+                           `is_valid` int(0) NOT NULL DEFAULT 1 COMMENT '是否有效',
                            PRIMARY KEY (`acc_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of account
 -- ----------------------------
-INSERT INTO `account` VALUES (1, 'account for machine 1', 'admin', 'admin', 2);
-INSERT INTO `account` VALUES (2, 'account for machine 2', 'admin', 'admin', 2);
-INSERT INTO `account` VALUES (3, 'account for machine 1', 'tom', 'tom', 1);
+INSERT INTO `account` VALUES (1, 'account for machine 1', 'admin', 'admin', 2, 1);
+INSERT INTO `account` VALUES (2, 'account for machine 2', 'admin', 'admin', 2, 1);
+INSERT INTO `account` VALUES (3, 'account for machine 1', 'tom', 'tom', 1, 1);
 
 SELECT * FROM account;
 -- ----------------------------
