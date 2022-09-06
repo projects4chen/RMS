@@ -16,25 +16,25 @@
     <select id="getUserNameById" resultType="String">
         SELECT nickname
         FROM rms_db.user
-        WHERE user_id = #{userId};
+        WHERE user_id = #{userId} and is_valid=1;
     </select>
 
     <select id="getUserById" parameterType="Long" resultMap="user">
         SELECT *
         FROM rms_db.user
-        WHERE user_id=#{id}
+        WHERE user_id=#{id} and is_valid=1;
     </select>
 
     <select id="getAllUsers" resultMap="userVo">
         SELECT user_id, username, nickname, password, description
         FROM rms_db.user as u,rms_db.identity as i
-        WHERE u.identity=i.ident_id
+        WHERE u.identity=i.ident_id and u.is_valid=1;
     </select>
 
     <select id="getUserByUsername" resultMap="user">
         SELECT *
         FROM rms_db.user
-        WHERE username=#{username}
+        WHERE username=#{username} and is_valid=1;
     </select>
 
     <insert id="addUser" parameterType="com.spdb.pojo.User">
@@ -49,10 +49,10 @@
         WHERE user_id=#{userId}
     </update>
 
-    <delete id="deleteUser" parameterType="Long">
-        DELETE
-        FROM rms_db.user
+    <update id="deleteUser" parameterType="Long">
+        UPDATE rms_db.user
+        SET is_valid=0
         WHERE user_id=#{userId}
-    </delete>
+    </update>
 
 </mapper>
