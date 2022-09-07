@@ -64,7 +64,7 @@
                         <th>用户id</th>
                         <th>账号</th>
                         <th>用户名</th>
-                        <th>密码</th>
+<!--                        <th>密码</th>-->
                         <th>身份</th>
                         <th>操作</th>
                     </tr>
@@ -75,7 +75,7 @@
                         <td th:text="${user.getUserId()}"></td>
                         <td th:text="${user.getUsername()}"></td>
                         <td th:text="${user.getNickname()}"></td>
-                        <td th:text="${user.getPassword()}"></td>
+<!--                        <td th:text="${user.getPassword()}"></td>-->
                         <td th:text="${user.getIdentity()}"></td>
                         <td>
                             <a class="btn btn-sm btn-primary" th:href="@{/user/toUpdateUserPage(id=${user.getUserId()})}">编辑</a>

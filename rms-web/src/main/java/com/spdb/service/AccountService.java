@@ -61,4 +61,11 @@ public interface AccountService {
      * @return
      */
     List<AccountVo> getOwnedAndSharedAccount(Long userId);
+
+    /**
+     * 处理账号申请的请求，1为接收，0为拒绝
+     * @param accountId
+     * @param agree
+     */
+    void processApp(Long accountId, int agree);
 }

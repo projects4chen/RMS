@@ -38,4 +38,9 @@
         ORDER BY sh_date DESC;
     </select>
 
+    <update id="processApp">
+        UPDATE rms_db.share
+        SET state=#{result}
+        WHERE acc_id=#{accountId}
+    </update>
 </mapper>

@@ -32,4 +32,10 @@ public interface SharedAccountMapper {
     List<SharedAccountVo> getSharedRecordsByUserId(Long userId);
 
 
+    /**
+     * 处理共享请求
+     * @param accountId
+     * @param result
+     */
+    void processApp(Long accountId, String result);
 }

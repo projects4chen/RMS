@@ -82,8 +82,8 @@
                         <td th:text="${account.getSharedDate()}"></td>
                         <td th:text="${account.getState()}"></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:if="${account.getState()=='待处理'}" th:href="@{/account/acceptSharedAccount(accountId=${account.getAccountId()}, accept=1)}">接受</a>
-                            <a class="btn btn-sm btn-danger" th:if="${account.getState()=='待处理'}" th:href="@{/account/acceptSharedAccount(accountId=${account.getAccountId()}, accpet=0)}">拒绝</a>
+                            <a class="btn btn-sm btn-primary" th:if="${account.getState()=='待处理'}" th:href="@{/account/acceptSharedAccount(accountId=${account.getAccountId()}, agree=1)}">接受</a>
+                            <a class="btn btn-sm btn-danger" th:if="${account.getState()=='待处理'}" th:href="@{/account/acceptSharedAccount(accountId=${account.getAccountId()}, agree=0)}">拒绝</a>
                         </td>
 
                     </tr>

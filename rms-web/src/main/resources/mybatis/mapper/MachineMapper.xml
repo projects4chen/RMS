@@ -12,7 +12,8 @@
     
     <select id="getAllMachines" resultMap="machineMap">
         SELECT *
-        FROM rms_db.machine;
+        FROM rms_db.machine
+        WHERE is_valid=1;
     </select>
 
     <insert id="addMachine" parameterType="com.spdb.pojo.Machine">
@@ -23,7 +24,7 @@
     <select id="getMachineById" resultMap="machineMap">
         SELECT *
         FROM rms_db.machine
-        WHERE machine_id = #{id}
+        WHERE machine_id = #{id} and is_valid = 1;
     </select>
 
     <update id="updateMachine" parameterType="com.spdb.pojo.Machine">
@@ -38,9 +39,9 @@
         WHERE machine_id=#{machineId}
     </update>
 
-    <delete id="deleteMachine" parameterType="Long">
-        DELETE
-        FROM rms_db.machine
+    <update id="deleteMachine" parameterType="Long">
+        UPDATE rms_db.machine
+        SET is_valid=0
         WHERE machine_id=#{id}
-    </delete>
+    </update>
 </mapper>

@@ -20,7 +20,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', '张三', '$2a$10$6TDXDVqf8Yisa01.sXiDMekbTKqws6pdwTMyMitYMkYy5WBd6rPi.', 3, 1);
-INSERT INTO `user` VALUES (2, 'tom', '李四', 'tom', 1, 1);
+INSERT INTO `user` VALUES (2, 'tom', '李四', '$2a$10$k/IEBN4wcG/vCu1i.AJsFex9qIPWwcqfz8CiPW7Y.vLMY0usmseo6', 1, 1);
 
 SELECT * FROM user;
 

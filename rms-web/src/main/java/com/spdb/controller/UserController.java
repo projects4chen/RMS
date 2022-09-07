@@ -41,6 +41,7 @@ public class UserController {
 
     @RequestMapping("/toAddUserPage")
     public String toAddUserPage(Model model){
+        userInfoService.retUserInfo(model);
         // 获取身份类型
         Collection<Ident> idents = identService.getAllIdents();
         model.addAttribute("idents", idents);
@@ -49,6 +50,7 @@ public class UserController {
 
     @RequestMapping("/addUser")
     public String addUser(Model model, User user){
+        userInfoService.retUserInfo(model);
 //        System.out.println(user);
         if (userService.addUser(user)){
             return "redirect:/user/userInfo";
@@ -62,6 +64,7 @@ public class UserController {
 
     @RequestMapping("/toUpdateUserPage")
     public String toUpdateUserPage(Model model, @RequestParam("id") Long id){
+        userInfoService.retUserInfo(model);
         // 获取身份类型
         Collection<Ident> idents = identService.getAllIdents();
         model.addAttribute("idents", idents);

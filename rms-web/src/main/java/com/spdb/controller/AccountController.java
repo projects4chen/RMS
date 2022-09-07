@@ -44,7 +44,8 @@ public class AccountController {
     }
 
     @RequestMapping("/toAddAccountPage")
-    public String toAddAccountPage(){
+    public String toAddAccountPage(Model model){
+        userInfoService.retUserInfo(model);
         return "/account/add";
     }
 
@@ -56,6 +57,7 @@ public class AccountController {
 
     @RequestMapping("/toUpdateAccountPage")
     public String toUpdateAccountPage(Model model, @RequestParam("id") Long id){
+        userInfoService.retUserInfo(model);
         // 获取账号的信息
         Account account = accountService.getAccountById(id);
         // 返回前端
@@ -104,5 +106,10 @@ public class AccountController {
         return "/account/application";
     }
 
+    @RequestMapping("/acceptSharedAccount")
+    public String acceptSharedAccount(@RequestParam("accountId") Long accountId, @RequestParam("agree") int agree){
+        accountService.processApp(accountId, agree);
+        return "redirect:/account/accountInfo";
+    }
 
 }

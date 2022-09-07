@@ -40,7 +40,8 @@ public class MachineController {
     }
 
     @RequestMapping("/toAddMachinePage")
-    public String toAddPage(){
+    public String toAddPage(Model model){
+        userInfoService.retUserInfo(model);
         return "/machine/add";
     }
 
@@ -52,6 +53,7 @@ public class MachineController {
 
     @RequestMapping("/toUpdateMachinePage")
     public String toUpdatePage(Model model, @RequestParam("id") Long id){
+        userInfoService.retUserInfo(model);
         // 查出该机器的信息
         Machine machine = machineService.getMachineById(id);
         // 返回前端
@@ -61,8 +63,9 @@ public class MachineController {
     }
 
     @RequestMapping("/updateMachine")
-    public String updateMachine(Machine machine){
-        System.out.println(machine);
+    public String updateMachine(Model model, Machine machine){
+        userInfoService.retUserInfo(model);
+//        System.out.println(machine);
         machineService.updateMachine(machine);
         return "redirect:/machine/machineInfo";
     }

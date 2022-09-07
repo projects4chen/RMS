@@ -52,4 +52,5 @@
         SET is_valid=0
         WHERE acc_id=#{id}
     </update>
+
 </mapper>

@@ -98,4 +98,15 @@ public class AccountServiceImpl implements AccountService {
     public List<AccountVo> getOwnedAndSharedAccount(Long userId) {
         return accountMapper.getOwnedAndSharedAccount(userId);
     }
+
+    @Override
+    public void processApp(Long accountId, int agree) {
+        String result = "";
+        if (agree == 1){
+            result = "已同意";
+        } else {
+            result = "已拒绝";
+        }
+        sharedAccountMapper.processApp(accountId, result);
+    }
 }
